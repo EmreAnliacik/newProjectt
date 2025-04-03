@@ -3,14 +3,14 @@ name: Python application
 on:
   push:
     branches:
-      - main  # Run on pushes to the main branch
+      - master
   pull_request:
     branches:
-      - main  # Run on pull requests to the main branch
+      - master
 
 jobs:
   test:
-    runs-on: ubuntu-latest  # Use Ubuntu for the CI environment
+    runs-on: ubuntu-latest
 
     steps:
     - name: Checkout code
@@ -19,7 +19,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8  # Specify Python version
+        python-version: 3.8
 
     - name: Install dependencies
       run: |
