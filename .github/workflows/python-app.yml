@@ -1,0 +1,34 @@
+name: Python application
+
+on:
+  push:
+    branches:
+      - main  # Run on pushes to the main branch
+  pull_request:
+    branches:
+      - main  # Run on pull requests to the main branch
+
+jobs:
+  test:
+    runs-on: ubuntu-latest  # Use Ubuntu for the CI environment
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8  # Specify Python version
+
+    - name: Install dependencies
+      run: |
+        python -m venv venv  # Set up a virtual environment
+        source venv/bin/activate  # Activate virtual environment
+        pip install -r requirements.txt  # Install dependencies
+
+    - name: Run tests
+      run: |
+        source venv/bin/activate  # Activate virtual environment
+        pip install pytest  # Install pytest
+        pytest  # Run the tests
